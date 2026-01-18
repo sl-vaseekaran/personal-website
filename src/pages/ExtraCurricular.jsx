@@ -32,7 +32,7 @@ export default function ExtraCurricular() {
                 console.error("Failed to load media index:", err);
                 setLoading(false);
             });
-    }, []);
+    }, [basePath]);
 
     if (loading) {
         return <div style={{ padding: '80px', textAlign: 'center', opacity: 0.7 }}>Loading media...</div>;
@@ -342,10 +342,10 @@ export default function ExtraCurricular() {
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '16px' }}>
                                 {poems.map((poem, idx) => (
                                     <img
-                                                    key={idx}
-                                                    src={`${basePath}/media/poems/${poem}`}
-                                                    alt={`Poem ${idx + 1}`}
-                                                    onClick={() => setFullscreenPoem(`${basePath}/media/poems/${poem}`)}
+                                        key={idx}
+                                        src={`${basePath}/media/poems/${poem}`}
+                                        alt={`Poem ${idx + 1}`}
+                                        onClick={() => setFullscreenPoem(`${basePath}/media/poems/${poem}`)}
                                         style={{
                                             width: '100%',
                                             height: '300px',
