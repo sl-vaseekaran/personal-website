@@ -21,7 +21,7 @@ export default function Home() {
 
                     <div className="profileCard" aria-label="Profile photo placeholder">
                         <div className="profilePhoto">
-                            <img src="/assets/profile.jpg" alt={profile.name} />
+                            <img src="./assets/profile.jpg" alt={profile.name} />
                         </div>
                     </div>
                 </div>
