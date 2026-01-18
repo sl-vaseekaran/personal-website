@@ -17,9 +17,12 @@ export default function ExtraCurricular() {
     });
     const [loading, setLoading] = useState(true);
 
+    // Base path for media files
+    const basePath = process.env.PUBLIC_URL || '.';
+
     // Fetch media index at runtime
     useEffect(() => {
-        fetch('/mediaIndex.json')
+        fetch(`${basePath}/mediaIndex.json`)
             .then(res => res.json())
             .then(data => {
                 setMediaIndex(data);
@@ -38,8 +41,8 @@ export default function ExtraCurricular() {
     // Stories - automatically loaded from mediaIndex
     const stories = (mediaIndex.stories || []).map(filename => ({
         title: filename.replace(/\.[^/.]+$/, ""), // Remove extension for title
-        image: `/media/stories/${filename}`,
-        thumbnail: `/media/stories/${filename}`
+        image: `./media/stories/${filename}`,
+        thumbnail: `./media/stories/${filename}`
     }));
 
     // Photo albums - automatically loaded from mediaIndex
@@ -103,13 +106,13 @@ export default function ExtraCurricular() {
                                     <img
                                         key={idx}
                                         src={album.location === "Archive"
-                                            ? `/media/archive/photos/${photo}`
-                                            : `/media/photos/${album.location}/${photo}`}
+                                            ? `./media/archive/photos/${photo}`
+                                            : `./media/photos/${album.location}/${photo}`}
                                         alt={`${album.location} ${idx + 1}`}
                                         onClick={() => setFullscreenImage(
                                             album.location === "Archive"
-                                                ? `/media/archive/photos/${photo}`
-                                                : `/media/photos/${album.location}/${photo}`
+                                                ? `./media/archive/photos/${photo}`
+                                                : `./media/photos/${album.location}/${photo}`
                                         )}
                                         style={{
                                             width: '100%',
@@ -222,13 +225,13 @@ export default function ExtraCurricular() {
                                                     objectFit: 'contain'
                                                 }}
                                             >
-                                                <source src={collection.location === "Archive" ? `/media/archive/videos/${video}` : `/media/videos/${collection.location}/${video}`} type="video/mp4" />
-                                                <source src={collection.location === "Archive" ? `/media/archive/videos/${video}` : `/media/videos/${collection.location}/${video}`} type="video/quicktime" />
+                                                <source src={collection.location === "Archive" ? `./media/archive/videos/${video}` : `./media/videos/${collection.location}/${video}`} type="video/mp4" />
+                                                <source src={collection.location === "Archive" ? `./media/archive/videos/${video}` : `./media/videos/${collection.location}/${video}`} type="video/quicktime" />
                                                 Your browser does not support this video format. Try converting to MP4.
                                             </video>
                                             {/* Custom Fullscreen Button */}
                                             <button
-                                                onClick={() => setFullscreenVideo(collection.location === "Archive" ? `/media/archive/videos/${video}` : `/media/videos/${collection.location}/${video}`)}
+                                                onClick={() => setFullscreenVideo(collection.location === "Archive" ? `./media/archive/videos/${video}` : `./media/videos/${collection.location}/${video}`)}
                                                 style={{
                                                     position: 'absolute',
                                                     top: '16px',
@@ -340,9 +343,9 @@ export default function ExtraCurricular() {
                                 {poems.map((poem, idx) => (
                                     <img
                                         key={idx}
-                                        src={`/media/poems/${poem}`}
+                                        src={`./media/poems/${poem}`}
                                         alt={`Poem ${idx + 1}`}
-                                        onClick={() => setFullscreenPoem(`/media/poems/${poem}`)}
+                                        onClick={() => setFullscreenPoem(`./media/poems/${poem}`)}
                                         style={{
                                             width: '100%',
                                             height: '300px',
